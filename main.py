@@ -16,14 +16,14 @@ def main():
     dt = 0
 
     while True:
+        dt = frames.tick(60) / 1000
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
         screen.fill((0,0,0))
+        character.update(dt)
         character.draw(screen)
         pygame.display.flip()
-        frames.tick(60)
-        dt = frames.tick(60) / 1000
 
 
 if __name__ == "__main__":
