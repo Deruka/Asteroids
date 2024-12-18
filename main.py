@@ -9,9 +9,12 @@ def main():
     print("Starting asteroids!")
     print(f"Screen width: {constants.SCREEN_WIDTH}")
     print(f"Screen height: {constants.SCREEN_HEIGHT}")
-    pygame.init
+    pygame.init()
     screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
     frames = pygame.time.Clock()
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    player.Player.containers = (updatable, drawable)
     character = player.Player(constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2)
     dt = 0
 
@@ -21,8 +24,9 @@ def main():
             if event.type == pygame.QUIT:
                 return
         screen.fill((0,0,0))
-        character.update(dt)
-        character.draw(screen)
+        updatable.update(dt)
+        for sprite in drawable:
+            sprite.draw(screen)
         pygame.display.flip()
 
 
