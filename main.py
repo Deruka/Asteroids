@@ -34,6 +34,11 @@ def main():
         for sprite in drawable:
             sprite.draw(screen)
         for one in asteroids:
+            for bullet in shots:
+                if bullet.collision(one) == True:
+                    bullet.kill()
+                    one.kill()
+        for one in asteroids:
             if one.collision(character) == True:
                 print("Game over!")
                 sys.exit()
