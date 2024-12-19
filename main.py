@@ -22,7 +22,7 @@ def main():
     asteroidfield.AsteroidField.containers = (updatable)
     character = player.Player(constants.SCREEN_WIDTH / 2, constants.SCREEN_HEIGHT / 2)
     AsteroidField = asteroidfield.AsteroidField()
-    dt = 0
+    dt = 0.0
 
     while True:
         dt = frames.tick(60) / 1000
@@ -37,7 +37,7 @@ def main():
             for bullet in shots:
                 if bullet.collision(one) == True:
                     bullet.kill()
-                    one.kill()
+                    one.split()
         for one in asteroids:
             if one.collision(character) == True:
                 print("Game over!")
